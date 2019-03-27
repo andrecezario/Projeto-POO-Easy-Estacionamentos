@@ -40,13 +40,13 @@ public class TelasDeletarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao remover");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Não existe um cliente cadastrado com esse CPF!");
+			alert.setContentText("Nï¿½o existe um cliente cadastrado com esse CPF!");
 			alert.showAndWait();
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao remover");
-			alert.setHeaderText("CPF inválido");
-			alert.setContentText("Informe apenas os números do CPF!");
+			alert.setHeaderText("CPF invï¿½lido");
+			alert.setContentText("Informe apenas os nï¿½meros do CPF!");
 			alert.showAndWait();
 		} finally {
 			limparCamposCliente();
@@ -65,24 +65,24 @@ public class TelasDeletarController {
 	private TextField placa;
 
 	@FXML
-	public void deletarVeiculo(ActionEvent event) throws IOException, PlacaNaoExisteException {
+	public void deletarVeiculo(ActionEvent event) throws IOException, PlacaNaoExisteException, NumberFormatException, CpfNaoExisteException {
 		try {
 			String placA = placa.getText().toString();
 			if (!(placA.equals(""))) {
 				fachada.removerVeiculo(placA);
-				Alert alert = new Alert(AlertType.INFORMATION, "Veículo removido com sucesso!");
-				alert.setTitle("Veículo removido");
+				Alert alert = new Alert(AlertType.INFORMATION, "Veï¿½culo removido com sucesso!");
+				alert.setTitle("Veï¿½culo removido");
 				alert.setHeaderText("Removido");
 				alert.showAndWait();
 			} else {
-				Alert alert = new Alert(AlertType.ERROR, "Informe uma Placa para remover um veículo!");
+				Alert alert = new Alert(AlertType.ERROR, "Informe uma Placa para remover um veï¿½culo!");
 				alert.show();
 			}
 		} catch (PlacaNaoExisteException pne) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao deletar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Não existe um veículo cadastrado com essa Placa!");
+			alert.setContentText("Nï¿½o existe um veï¿½culo cadastrado com essa Placa!");
 			alert.showAndWait();
 		} finally {
 			limparCamposVeiculo();
@@ -105,8 +105,8 @@ public class TelasDeletarController {
 			if (!(cpfFuncionario.getText().toString().equals(""))) {
 				Long cPF = Long.parseLong(cpfFuncionario.getText().toString());
 				fachada.removerFuncionario(cPF);
-				Alert alert = new Alert(AlertType.INFORMATION, "Funcionário removido com sucesso!");
-				alert.setTitle("Funcionário removido");
+				Alert alert = new Alert(AlertType.INFORMATION, "Funcionï¿½rio removido com sucesso!");
+				alert.setTitle("Funcionï¿½rio removido");
 				alert.setHeaderText("Removido");
 				alert.showAndWait();
 			} else {
@@ -117,13 +117,13 @@ public class TelasDeletarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao deletar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Não existe um funcionário cadastrado com esse CPF!");
+			alert.setContentText("Nï¿½o existe um funcionï¿½rio cadastrado com esse CPF!");
 			alert.showAndWait();
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao remover");
-			alert.setHeaderText("CPF inválido");
-			alert.setContentText("Informe apenas os números do CPF!");
+			alert.setHeaderText("CPF invï¿½lido");
+			alert.setContentText("Informe apenas os nï¿½meros do CPF!");
 			alert.showAndWait();
 		} finally {
 			limparCamposFuncionario();
@@ -159,7 +159,7 @@ public class TelasDeletarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao deletar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Não existe um estacionamento cadastrado com esse Nome!");
+			alert.setContentText("Nï¿½o existe um estacionamento cadastrado com esse Nome!");
 			alert.showAndWait();
 		} finally {
 			limparCamposEstacionamento();

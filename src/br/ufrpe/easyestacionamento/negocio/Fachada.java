@@ -19,21 +19,26 @@ import br.ufrpe.easyestacionamento.negocio.exception.VeiculoJaEstacionadoExcepti
 import br.ufrpe.easyestacionamento.negocio.exception.VeiculoJaExisteException;
 import br.ufrpe.easyestacionamento.negocio.exception.VeiculoNaoEstacionadoException;
 import br.ufrpe.easyestacionamento.negocio.exception.VeiculoNaoExisteException;
+import br.ufrpe.easyestacionamento.negocio.padroes.Cadastro;
+import br.ufrpe.easyestacionamento.negocio.padroes.CadastroClienteAdapter;
+import br.ufrpe.easyestacionamento.negocio.padroes.CadastroFuncionarioAdapter;
+import br.ufrpe.easyestacionamento.negocio.padroes.MethodFactory;
 
 public class Fachada implements IFachada {
 
 	private static Fachada instance;
 
-	private CadastroVeiculo cadastroVeiculo;
-	private CadastroCliente cadastroCliente;
-	private CadastroFuncionario cadastroFuncionario;
+	private Cadastro cadastroVeiculo;
+	private Cadastro cadastroCliente;
+	private Cadastro cadastroFuncionario;
+	
 	private CadastroRegistroEstacionamento cadastroRegistroEstacionamento;
 	private CadastroEstacionamento cadastroEstacionamento;
 
 	private Fachada() {
-		this.cadastroVeiculo = new CadastroVeiculo();
-		this.cadastroCliente = new CadastroCliente();
-		this.cadastroFuncionario = new CadastroFuncionario();
+		this.cadastroVeiculo = MethodFactory.criarCadastro("veiculo");
+		this.cadastroCliente = MethodFactory.criarCadastro("cliente");
+		this.cadastroFuncionario = MethodFactory.criarCadastro("funcionario");
 		this.cadastroRegistroEstacionamento = new CadastroRegistroEstacionamento();
 		this.cadastroEstacionamento = new CadastroEstacionamento();
 	}
@@ -46,43 +51,43 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public void cadastrarVeiculo(Veiculo veiculo) throws VeiculoJaExisteException {
+	public void cadastrarVeiculo(Veiculo veiculo) throws VeiculoJaExisteException, FuncionarioJaExisteException, LoginJaExisteException, ClienteJaExisteException {
 		cadastroVeiculo.cadastrar(veiculo);
 	}
 
 	@Override
 	public Veiculo buscarVeiculo(String placa) {
-		return cadastroVeiculo.procurar(placa);
+		return (Veiculo) cadastroVeiculo.buscar(Long.parseLong(placa));
 	}
 
 	@Override
 	public List<Veiculo> listarVeiculos() {
-		return cadastroVeiculo.listarVeiculo();
+		return cadastroVeiculo.listarV();
 	}
 
 	@Override
-	public void removerVeiculo(String placa) throws PlacaNaoExisteException {
-		cadastroVeiculo.remover(placa);
+	public void removerVeiculo(String placa) throws PlacaNaoExisteException, NumberFormatException, CpfNaoExisteException {
+		cadastroVeiculo.remover(Long.parseLong(placa));
 	}
 
 	@Override
-	public void atualizarVeiculo(Veiculo novo, String placa) throws PlacaNaoExisteException {
-		cadastroVeiculo.atualizar(novo, placa);
+	public void atualizarVeiculo(Veiculo novo, String placa) throws PlacaNaoExisteException, NumberFormatException, CpfNaoExisteException, LoginJaExisteException {
+		cadastroVeiculo.atualizar(novo, Long.parseLong(placa));
 	}
 
 	@Override
-	public void cadastrarCliente(Cliente cliente) throws ClienteJaExisteException {
+	public void cadastrarCliente(Cliente cliente) throws ClienteJaExisteException, FuncionarioJaExisteException, LoginJaExisteException, VeiculoJaExisteException {
 		cadastroCliente.cadastrar(cliente);
 	}
 
 	@Override
 	public Cliente buscarCliente(Long cpf) {
-		return cadastroCliente.procurar(cpf);
+		return (Cliente) cadastroCliente.buscar(cpf);
 	}
 
 	@Override
 	public List<Cliente> listarClientes() {
-		return cadastroCliente.listarClientes();
+		return cadastroCliente.listarC();
 	}
 
 	@Override
@@ -91,23 +96,23 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public void atualizarCliente(Cliente novo, Long cpf) throws CpfNaoExisteException {
+	public void atualizarCliente(Cliente novo, Long cpf) throws CpfNaoExisteException, NumberFormatException, LoginJaExisteException, PlacaNaoExisteException {
 		cadastroCliente.atualizar(novo, cpf);
 	}
 
 	@Override
-	public void cadastrarFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException, LoginJaExisteException {
+	public void cadastrarFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException, LoginJaExisteException, ClienteJaExisteException, VeiculoJaExisteException {
 		cadastroFuncionario.cadastrar(funcionario);
 	}
 
 	@Override
 	public Funcionario buscarFuncionario(Long cpf) {
-		return cadastroFuncionario.procurar(cpf);
+		return (Funcionario) cadastroFuncionario.buscar(cpf);
 	}
 
 	@Override
 	public List<Funcionario> listarFuncionarios() {
-		return cadastroFuncionario.listarFuncionarios();
+		return cadastroFuncionario.listarF();
 	}
 
 	@Override
@@ -116,7 +121,7 @@ public class Fachada implements IFachada {
 	}
 
 	@Override
-	public void atualizarFuncionario(Funcionario novo, Long cpf) throws CpfNaoExisteException, LoginJaExisteException {
+	public void atualizarFuncionario(Funcionario novo, Long cpf) throws CpfNaoExisteException, LoginJaExisteException, NumberFormatException, PlacaNaoExisteException {
 		cadastroFuncionario.atualizar(novo, cpf);
 	}
 

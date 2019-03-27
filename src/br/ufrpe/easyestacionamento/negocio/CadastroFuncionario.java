@@ -24,10 +24,10 @@ public class CadastroFuncionario {
 			if (!this.existeLogin(funcionario.getLogin())) {
 				this.repositorio.cadastrar(funcionario);
 			} else {
-				throw new LoginJaExisteException("Já existe um funcionário cadastrado com esse login");
+				throw new LoginJaExisteException("Jï¿½ existe um funcionï¿½rio cadastrado com esse login");
 			}
 		} else {
-			throw new FuncionarioJaExisteException("Já existe um funcionário cadastrado com esse CPF");
+			throw new FuncionarioJaExisteException("Jï¿½ existe um funcionï¿½rio cadastrado com esse CPF");
 		}
 	}
 
@@ -36,7 +36,7 @@ public class CadastroFuncionario {
 		if (f != null && f.getCpf().equals(cpf)) {
 			this.repositorio.remover(f);
 		} else {
-			throw new CpfNaoExisteException("Cpf não existe, funcionário não encontrado!");
+			throw new CpfNaoExisteException("Cpf nï¿½o existe, funcionï¿½rio nï¿½o encontrado!");
 		}
 	}
 
@@ -49,10 +49,10 @@ public class CadastroFuncionario {
 			if (!this.existeLogin(novo.getLogin())) {
 				this.repositorio.atualizar(novo, cpf);
 			} else {
-				throw new LoginJaExisteException("Já existe um funcionário cadastrado com esse login");
+				throw new LoginJaExisteException("Jï¿½ existe um funcionï¿½rio cadastrado com esse login");
 			}
 		} else {
-			throw new CpfNaoExisteException("Cpf não existe, funcionário não encontrado!");
+			throw new CpfNaoExisteException("Cpf nï¿½o existe, funcionï¿½rio nï¿½o encontrado!");
 		}
 	}
 
