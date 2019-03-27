@@ -34,7 +34,7 @@ public class TelasAtualizarController {
 	private CheckBox mensalista;
 
 	@FXML
-	public void atualizarCliente(ActionEvent event) throws IOException, CpfNaoExisteException {
+	public void atualizarCliente(ActionEvent event) throws IOException, CpfNaoExisteException, LoginJaExisteException {
 		try {
 			String nome = nomeCompletoCliente.getText().toString();
 			String telefone = telefoneCliente.getText().toString();
@@ -44,7 +44,7 @@ public class TelasAtualizarController {
 				Cliente cliente = new Cliente(nome, cpf, telefone, clienteMensalista);
 				fachada.atualizarCliente(cliente, cpf);
 				Alert alert = new Alert(AlertType.INFORMATION, "Cliente atualizado com sucesso!");
-				alert.setTitle("Atualização de clientes");
+				alert.setTitle("Atualizaï¿½ï¿½o de clientes");
 				alert.setHeaderText("Cliente atualizado");
 				alert.showAndWait();
 			} else {
@@ -55,13 +55,13 @@ public class TelasAtualizarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao atualizar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Não existe um cliente cadastrado com esse CPF para que possa atualizar!");
+			alert.setContentText("Nï¿½o existe um cliente cadastrado com esse CPF para que possa atualizar!");
 			alert.showAndWait();
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao atualizar");
-			alert.setHeaderText("CPF inválido");
-			alert.setContentText("Informe apenas os números do CPF!");
+			alert.setHeaderText("CPF invï¿½lido");
+			alert.setContentText("Informe apenas os nï¿½meros do CPF!");
 			alert.showAndWait();
 		} finally {
 			limparCamposCliente();
@@ -102,9 +102,9 @@ public class TelasAtualizarController {
 				Long cPF = Long.parseLong(cpfFuncionario.getText().toString());
 				Funcionario funcionario = new Funcionario(nome, cPF, tel, logiN, senhA);
 				fachada.atualizarFuncionario(funcionario, cPF);
-				Alert alert = new Alert(AlertType.INFORMATION, "Funcionário atualizado com sucesso!");
-				alert.setTitle("Atualização de funcionários");
-				alert.setHeaderText("Funcionário atualizado");
+				Alert alert = new Alert(AlertType.INFORMATION, "Funcionï¿½rio atualizado com sucesso!");
+				alert.setTitle("Atualizaï¿½ï¿½o de funcionï¿½rios");
+				alert.setHeaderText("Funcionï¿½rio atualizado");
 				alert.showAndWait();
 			} else {
 				Alert alert = new Alert(AlertType.ERROR, "Preencha todos os campos!");
@@ -114,19 +114,19 @@ public class TelasAtualizarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao atualizar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Não existe um funcionário cadastrado com esse CPF para que possa atualizar!");
+			alert.setContentText("Nï¿½o existe um funcionï¿½rio cadastrado com esse CPF para que possa atualizar!");
 			alert.showAndWait();
 		} catch (LoginJaExisteException lje) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao atualizar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Já existe um funcionário cadastrado com esse login!");
+			alert.setContentText("Jï¿½ existe um funcionï¿½rio cadastrado com esse login!");
 			alert.showAndWait();
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao atualizar");
-			alert.setHeaderText("CPF inválido");
-			alert.setContentText("Informe apenas os números do CPF!");
+			alert.setHeaderText("CPF invï¿½lido");
+			alert.setContentText("Informe apenas os nï¿½meros do CPF!");
 			alert.showAndWait();
 		} finally {
 			limparCamposFuncionario();
@@ -170,12 +170,12 @@ public class TelasAtualizarController {
 				if (proprietarioVeiculo != null) {
 					Veiculo veiculo = new Veiculo(proprietarioVeiculo, marcA, placA, cor, nome);
 					fachada.atualizarVeiculo(veiculo, placA);
-					Alert alert = new Alert(AlertType.INFORMATION, "Veículo atualizado com sucesso!");
-					alert.setTitle("Atualização de veículos");
-					alert.setHeaderText("Veículo atualizado");
+					Alert alert = new Alert(AlertType.INFORMATION, "Veï¿½culo atualizado com sucesso!");
+					alert.setTitle("Atualizaï¿½ï¿½o de veï¿½culos");
+					alert.setHeaderText("Veï¿½culo atualizado");
 					alert.showAndWait();
 				} else {
-					throw new CpfNaoExisteException("Não existe cliente cadastrado para esse cpf!");
+					throw new CpfNaoExisteException("Nï¿½o existe cliente cadastrado para esse cpf!");
 				}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR, "Preencha todos os campos!");
@@ -185,11 +185,11 @@ public class TelasAtualizarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao atualizar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Não existe um veículo cadastrado com essa Placa para que possa atualizar!");
+			alert.setContentText("Nï¿½o existe um veï¿½culo cadastrado com essa Placa para que possa atualizar!");
 			alert.showAndWait();
 
 		} catch (CpfNaoExisteException cne) {
-			Alert alert = new Alert(AlertType.ERROR, "Não existe um cliente cadastrado com o CPF fornecido!");
+			Alert alert = new Alert(AlertType.ERROR, "Nï¿½o existe um cliente cadastrado com o CPF fornecido!");
 			alert.show();
 		} finally {
 			limparCamposVeiculo();

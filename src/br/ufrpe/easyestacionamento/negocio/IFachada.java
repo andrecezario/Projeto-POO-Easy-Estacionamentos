@@ -30,14 +30,14 @@ public interface IFachada {
 	void atualizarVeiculo(Veiculo novo, String placa) throws PlacaNaoExisteException;
 	
 	//Cliente
-	void cadastrarCliente(Cliente cliente) throws ClienteJaExisteException;
+	void cadastrarCliente(Cliente cliente) throws ClienteJaExisteException, FuncionarioJaExisteException, LoginJaExisteException;
 	Cliente buscarCliente(Long cpf);
 	List<Cliente> listarClientes();
 	void removerCliente(Long cpf) throws CpfNaoExisteException;
-	void atualizarCliente(Cliente novo, Long cpf) throws CpfNaoExisteException;
+	void atualizarCliente(Cliente novo, Long cpf) throws CpfNaoExisteException, NumberFormatException, LoginJaExisteException;
 
 	//Funcionario
-	void cadastrarFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException, LoginJaExisteException;
+	void cadastrarFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException, LoginJaExisteException, ClienteJaExisteException;
 	Funcionario buscarFuncionario(Long cpf);
 	List<Funcionario> listarFuncionarios();
 	void removerFuncionario(Long cpf) throws CpfNaoExisteException;

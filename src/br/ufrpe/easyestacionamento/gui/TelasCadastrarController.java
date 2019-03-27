@@ -36,7 +36,7 @@ public class TelasCadastrarController {
 	private CheckBox mensalista;
 
 	@FXML
-	public void cadastrarClientes(ActionEvent event) throws IOException, ClienteJaExisteException {
+	public void cadastrarClientes(ActionEvent event) throws IOException, ClienteJaExisteException, FuncionarioJaExisteException, LoginJaExisteException {
 		try {
 			String nome = nomeCompleto.getText().toString();
 			String tel = telefone.getText().toString();
@@ -57,13 +57,13 @@ public class TelasCadastrarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao cadastrar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Já existe um cliente cadastrado com esse CPF!");
+			alert.setContentText("Jï¿½ existe um cliente cadastrado com esse CPF!");
 			alert.showAndWait();
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao cadastrar");
-			alert.setHeaderText("CPF inválido");
-			alert.setContentText("Informe apenas os números do CPF!");
+			alert.setHeaderText("CPF invï¿½lido");
+			alert.setContentText("Informe apenas os nï¿½meros do CPF!");
 			alert.showAndWait();
 		} finally {
 			limparCamposCadastrarCliente();
@@ -93,7 +93,7 @@ public class TelasCadastrarController {
 
 	@FXML
 	public void cadastrarFuncionarios(ActionEvent event)
-			throws IOException, FuncionarioJaExisteException, LoginJaExisteException {
+			throws IOException, FuncionarioJaExisteException, LoginJaExisteException, ClienteJaExisteException {
 		try {
 			String nome = nomeCompletoFuncionario.getText().toString();
 			String logiN = login.getText().toString();
@@ -104,9 +104,9 @@ public class TelasCadastrarController {
 				Long cPF = Long.parseLong(cpfFuncionario.getText().toString());
 				Funcionario funcionario = new Funcionario(nome, cPF, tel, logiN, senhA);
 				fachada.cadastrarFuncionario(funcionario);
-				Alert alert = new Alert(AlertType.INFORMATION, "Funcionário cadastrado com sucesso!");
-				alert.setTitle("Cadastro de funcionários");
-				alert.setHeaderText("Funcionário cadastrado");
+				Alert alert = new Alert(AlertType.INFORMATION, "Funcionï¿½rio cadastrado com sucesso!");
+				alert.setTitle("Cadastro de funcionï¿½rios");
+				alert.setHeaderText("Funcionï¿½rio cadastrado");
 				alert.showAndWait();
 			} else {
 				Alert alert = new Alert(AlertType.ERROR, "Preencha todos os campos!");
@@ -116,19 +116,19 @@ public class TelasCadastrarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao cadastrar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Já existe um funcionário cadastrado com esse CPF!");
+			alert.setContentText("Jï¿½ existe um funcionï¿½rio cadastrado com esse CPF!");
 			alert.showAndWait();
 		} catch (LoginJaExisteException lje) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao cadastrar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Já existe um funcionário cadastrado com esse login!");
+			alert.setContentText("Jï¿½ existe um funcionï¿½rio cadastrado com esse login!");
 			alert.showAndWait();
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao cadastrar");
-			alert.setHeaderText("CPF inválido");
-			alert.setContentText("Informe apenas os números do CPF!");
+			alert.setHeaderText("CPF invï¿½lido");
+			alert.setContentText("Informe apenas os nï¿½meros do CPF!");
 			alert.showAndWait();
 		} finally {
 			limparCamposCadastrarFuncionario();
@@ -173,12 +173,12 @@ public class TelasCadastrarController {
 				if (proprietarioVeiculo != null) {
 					Veiculo veiculo = new Veiculo(proprietarioVeiculo, marcA, placA, cor, nome);
 					fachada.cadastrarVeiculo(veiculo);
-					Alert alert = new Alert(AlertType.INFORMATION, "Veículo cadastrado com sucesso!");
-					alert.setTitle("Cadastro de veículos");
-					alert.setHeaderText("Veículo cadastrado");
+					Alert alert = new Alert(AlertType.INFORMATION, "Veï¿½culo cadastrado com sucesso!");
+					alert.setTitle("Cadastro de veï¿½culos");
+					alert.setHeaderText("Veï¿½culo cadastrado");
 					alert.showAndWait();
 				} else {
-					throw new CpfNaoExisteException("Não existe cliente cadastrado para esse cpf!");
+					throw new CpfNaoExisteException("Nï¿½o existe cliente cadastrado para esse cpf!");
 				}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR, "Preencha todos os campos!");
@@ -188,10 +188,10 @@ public class TelasCadastrarController {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Falha ao cadastrar");
 			alert.setHeaderText("Tente novamente");
-			alert.setContentText("Já existe um veículo cadastrado com essa Placa!");
+			alert.setContentText("Jï¿½ existe um veï¿½culo cadastrado com essa Placa!");
 			alert.showAndWait();
 		} catch (CpfNaoExisteException cne) {
-			Alert alert = new Alert(AlertType.ERROR, "Não existe um cliente cadastrado com o CPF fornecido!");
+			Alert alert = new Alert(AlertType.ERROR, "Nï¿½o existe um cliente cadastrado com o CPF fornecido!");
 			alert.show();
 		} finally {
 			limparCamposCadastrarVeiculo();
