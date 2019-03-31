@@ -1,11 +1,29 @@
-O Easy Estacionamentos foi um projeto desenvolvido para a cadeira de Introdução à Programação 2 - Java Orientado a Objetos - UFRPE
+## **Easy Estacionamentos**
+**Aluno:** André Luiz de Oliveira Cezário
 
-#Descrição do sistema:
+**Projeto original**
+**Como executar**
+- Clone o repositório
+- Abra o Eclipse
+- Importe o projeto
+- Abra e execute-o
 
-☕️ Sistema para gerenciamento de estacionamentos desenvolvido em Java utilizando Javafx como interface gráfica(GUI). ✔️
+**Projeto refatorado**
+**Como executar**
+- Clone o repositório
+- Abra o Eclipse
+- Importe o projeto
+- Abra e execute-o
 
-☕️ Padrões de projeto do sistema: MVC, Singleton, Facade. ✔️
+**Padrões**
 
-☕️ Sistema com DAO Genérico Abstrato com persistência em arquivos. ✔️
+**1 - Adapter:** Converter a interface de uma classe em outra interface, esperada pelo cliente. O Adapter permite que interfaces incompatíveis trabalhem em conjunto – o que, de outra forma, seria impossível.
 
-☕️ Sistema desenvolvido para por em prática, todos os conceitos de orientação a objetos, assim como: Classes, Objetos, Encapsulamnto, Associações de classes, Herança, Polimorfismo, exceções, Classes abstratas, Interfaces, Coleções, Enumerações, Generics, entre outros. ✔️
+**2 - Factory Method:** Definir uma interface para criar um objeto, mas deixar as subclasses decidirem que classe instanciar. O Factory Method permite adiar a instanciação para subclasses.
+
+
+**Classes e Métodos afetados**
+
+![Classes afetadas](https://i.ibb.co/bR76wsV/Apresenta-o-Refatoramento-P3.png)
+
+![Refatorado](https://i.ibb.co/fqX3RQ6/Untitled-Diagram-5.png)
